@@ -1,0 +1,62 @@
+mysql:
+  image: lvo9/mysql
+  container_name: mysql
+  restart: always
+  ports:
+    - 3306:3306
+  volumes_from:
+    - data-mysql
+  volumes:
+    - ./mysql/init.sql:/init.sql
+  environment:
+    - TZ=Europe/Paris
+    - MYSQL_USER=root
+    - MYSQL_PASS=
+    - STARTUP_SQL=/init.sql
+phpmyadmin:
+  image: corbinu/docker-phpmyadmin
+  container_name: phpmyadmin
+  restart: always
+  ports:
+    - 8080:80
+  links:
+    - mysql
+  environment:
+    - MYSQL_USERNAME=root
+    - PMA_NO_PASSWORD=1
+apache:
+  build: apache
+  container_name: apache
+  restart: always
+  ports:
+    - 80:80
+  links:
+    - mysql
+  volumes_from:
+    - data-apache
+  volumes:
+    - ./apache/apache2.conf:/etc/apache2/apache2.conf
+    - ./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    - ./apache/php.ini:/etc/php5/apache2/php.ini
+    - ./apache/php.ini:/etc/php5/cli/php.ini
+    - ./apache/apache-20-xdebug.ini:/etc/php5/apache2/conf.d/20-xdebug.ini
+    - ./apache/cli-20-xdebug.ini:/etc/php5/cli/conf.d/20-xdebug.ini
+    - ./apache/refresh-acl.sh:/refresh-acl.sh
+    - ./apache/run.sh:/run.sh
+
+afp:
+  image: cptactionhank/netatalk
+  container_name: afp-server
+  restart: always
+  ports:
+    - 548:548
+  volumes_from:
+    - data-apache
+  volumes:
+    - ./netatalk/afp.conf:/etc/afp.conf
+  net: host
+  environment:
+    - AFP_USER=www-data
+    - AFP_PASSWORD=www-data
+    - AFP_UID = 33  
+    - AFP_GID = 33  
