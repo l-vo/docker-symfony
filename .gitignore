@@ -1,0 +1,15 @@
+apache/*
+mysql/*
+netatalk/*
+html-sources/*
+docker-compose.yml
+
+!apache/install-sf.sh
+
+# For keeping and get empty directories
+!mysql/.keep
+!netatalk/.keep 
+!html-sources/.keep
+
+# For OSX hosts
+.DS_Store
