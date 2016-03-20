@@ -42,7 +42,7 @@ On an OSX host, you need to initialize a data-only container for your project fi
 First, find the ips to access to the containers.  
 On an OSX host:
     
-    $ docker-machine inspect your-machine-name | grep "IPAddress"
+    $ docker-machine ip your-machine-name
     
 On a linux host:
 
