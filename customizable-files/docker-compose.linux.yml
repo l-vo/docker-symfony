@@ -11,7 +11,6 @@ mysql:
   environment:
     - TZ=Europe/Paris
     - MYSQL_USER=root
-    - MYSQL_PASS=
     - STARTUP_SQL=/init.sql
 phpmyadmin:
   image: corbinu/docker-phpmyadmin
