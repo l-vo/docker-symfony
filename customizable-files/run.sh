@@ -10,7 +10,7 @@
 # echo "export SYMFONY__MAILER__PASSWORD=\"mymailpass\"" >> ~/.bashrc
 # fi
 
-chmud u+x /refresh-acl.sh
+chmod u+x /refresh-acl.sh
 /refresh-acl.sh
 
 source /etc/apache2/envvars
