@@ -5,6 +5,7 @@ html-sources/*
 docker-compose.yml
 
 !apache/install-sf.sh
+!apache/composer.phar
 
 # For keeping and get empty directories
 !mysql/.keep

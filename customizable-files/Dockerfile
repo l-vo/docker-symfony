@@ -16,8 +16,8 @@ RUN cp /etc/php5/mods-available/xdebug.ini /etc/php5/cli/conf.d/20-xdebug.ini
 RUN cp /etc/php5/mods-available/xdebug.ini /etc/php5/apache2/conf.d/20-xdebug.ini
 RUN cp /etc/php5/mods-available/xdebug.ini /etc/php5/cli/conf.d/20-xdebug.ini
 
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php
+# Composer self-update
+COPY composer.phar /usr/local/bin/composer
 RUN composer self-update
 
 # Install symfony
