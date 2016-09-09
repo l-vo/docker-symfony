@@ -119,7 +119,7 @@ If you have permission issues, try running the acl permissions script in the apa
     $ docker exec apache /refresh-acl.sh
 
 ## Third party containers
-This set of containers use the followings:  
+This set of containers uses the followings:  
   
 Tutumcloud MySQL:  
 https://github.com/tutumcloud/mysql
