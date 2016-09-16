@@ -35,8 +35,8 @@ apache:
     - ./html-sources:/app
     - ./apache/apache2.conf:/etc/apache2/apache2.conf
     - ./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
-    - ./apache/php.ini:/etc/php5/apache2/php.ini
-    - ./apache/php.ini:/etc/php5/cli/php.ini
+    - ./apache/apache-php.ini:/etc/php5/apache2/php.ini
+    - ./apache/cli-php.ini:/etc/php5/cli/php.ini
     - ./apache/apache-20-xdebug.ini:/etc/php5/apache2/conf.d/20-xdebug.ini
     - ./apache/cli-20-xdebug.ini:/etc/php5/cli/conf.d/20-xdebug.ini
     - ./apache/refresh-acl.sh:/refresh-acl.sh
