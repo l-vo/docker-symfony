@@ -42,12 +42,12 @@ On an OSX host, you need to initialize a data-only container for your project fi
 First, find the ips to access to the containers.  
 On an OSX host:
     
-    $ docker-machine ip your-machine-name
+    $ docker-machine ip your-machine-name # port 80 for your application, 8080 for phpMyAdmin
     
 On a linux host:
 
-    $ docker inspect apache | grep "IPAddress"          # Apache container ip
-    $ docker inspect phpmyadmin | grep "IPAddress"      # PhpMyAdmin container ip
+    $ docker inspect --format '{{ .NetworkSettings.IPAddress }}' apache     # Apache container ip
+    $ docker inspect --format '{{ .NetworkSettings.IPAddress }}' phpmyadmin # PhpMyAdmin container ip
 
 ### Initialize your database data
 Your project needs probably the creation of a database, a specific user...  
