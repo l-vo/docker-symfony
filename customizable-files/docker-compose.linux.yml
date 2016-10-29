@@ -4,8 +4,6 @@ services:
     image: lvo9/mysql
     container_name: mysql
     restart: always
-    ports:
-      - 3306:3306
     volumes:
       - mysql:/var/lib/mysql
       - mysql:/flags
@@ -15,16 +13,13 @@ services:
       - MYSQL_USER=root
       - STARTUP_SQL=/init.sql
   phpmyadmin:
-    image: corbinu/docker-phpmyadmin
+    image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     restart: always
     ports:
       - 8080:80
     links:
-      - mysql
-    environment:
-      - MYSQL_USERNAME=root
-      - PMA_NO_PASSWORD=1
+      - mysql:db
   apache:
     build: apache
     container_name: apache
