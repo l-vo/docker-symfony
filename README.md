@@ -94,6 +94,7 @@ Php configuration:
 
 Mysql configuration:
 * mysql/init.sql (optional database and user creation, executed once when no mysql data exists)
+By default, this script create a root user with 'root' as password.
 
 Afp configuration:
 * netatalk/afp.conf (afp server configuration)

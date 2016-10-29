@@ -15,16 +15,13 @@ services:
       - MYSQL_USER=root
       - STARTUP_SQL=/init.sql
   phpmyadmin:
-    image: corbinu/docker-phpmyadmin
-    container_name: phpmyadmin
-    restart: always
-    ports:
-      - 8080:80
-    links:
-      - mysql
-    environment:
-      - MYSQL_USERNAME=root
-      - PMA_NO_PASSWORD=1
+      image: phpmyadmin/phpmyadmin
+      container_name: phpmyadmin
+      restart: always
+      ports:
+        - 8080:80
+      links:
+        - mysql:db
   apache:
     build: apache
     container_name: apache
@@ -43,7 +40,6 @@ services:
       - ./apache/cli-20-xdebug.ini:/etc/php5/cli/conf.d/20-xdebug.ini
       - ./apache/refresh-acl.sh:/refresh-acl.sh
       - ./apache/run.sh:/run.sh
-
   afp:
     image: cptactionhank/netatalk
     container_name: afp-server
