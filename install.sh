@@ -58,13 +58,13 @@ else
   copyFile "docker-compose.linux.yml" "." "docker-compose.yml"
 fi
 
-# On linux hosts, add current host sur to the acl grants
+# On linux hosts, add current user sur to the acl grants
 if [[ "$osx" == 0 ]]
 then
   id=$(id -u)
   if [[ $(cat apache/refresh-acl.sh | grep "u:$id") == "" ]]
   then 
-    sed -i bak -e "s/-m u:www-data:rwX/-m u:$id:rwX -m u:www-data:rwX/g" apache/refresh-acl.sh 
+    sed -i -e "s/-m u:www-data:rwX/-m u:$id:rwX -m u:www-data:rwX/g" apache/refresh-acl.sh
     echo -e "\\033[1;32m+ user id $id added to the acl grants"
   fi
 fi
