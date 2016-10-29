@@ -3,6 +3,9 @@
 This composition of containers has been created and tested for Symfony projects but it is usable for more simple php projects or others frameworks.  
 Linux and OSX hosts are supported. This set of containers is for development purpose only. It's not usable in a production environment.
 
+## Requirements
+Docker engine 1.10.0 or later and Docker compose 1.6.0 or later.
+
 ## Install customizable files
 The install.sh script copy all customizable files in their destination directories.  
 On linux hosts, you should launch it with the user with which you will edit your project files.  
@@ -12,25 +15,14 @@ You are free to modify these files to create [your own configuration](#config-fi
 
 ## ACL support
 Because it's recommended to use acl on Symfony projects, this composition of containers support it.
-While the Docker default filesystem (AUFS) doesn't support ACL, you may use devicemapper to work with them.
+While the Docker default filesystem (AUFS) doesn't support ACL, you must use overlay2 on OSX hosts.
+Specify the filesystem on docker-machine creation:
 
-Linux host: specify the filesystem on docker daemon launch.
+    $ docker-machine create --driver=virtualbox --engine-storage-driver=overlay2 your-machine-name
 
-    $ docker daemon --storage-driver=devicemapper &
-
-OSX host: specify the filesystem on docker-machine creation.
-
-    $ docker-machine create --driver=virtualbox --engine-storage-driver=devicemapper your-machine-name
-
-## Data-only containers
-We use data-only containers for keeping data when you destroy and recreate containers.
-For initialize mysql data-only container (On an OSX host it must be ran in a docker-machine environment):
-
-    $ ./data-mysql/run.sh
-
-On an OSX host, you need to initialize a data-only container for your project files too:
-
-    $ ./data-apache/run.sh
+## Named volumes
+We use named volumes for keeping data when you destroy and recreate containers.  
+Your mysql databases are kept on this way. So are your project files on an OSX host (on a linux host they are stored in the host filesystem).
     
 **At this step, the environment is ready for running the containers**
 
@@ -81,7 +73,7 @@ Create a new bash session into the apache container:
 The symfony installer is wrapped by the script /install-sf.sh. This script accept the desired version of Symfony as its first argument.  
 Symfony is installed in the /app directory.
 
-    root@bdae20db89b4:/app# /install-sf.sh # If no args supplied, latest version is installed
+    root@bdae20db89b4:/app# /install-sf.sh 2.8 # If no args supplied, latest version is installed
     
 Composer is installed too. For instance to install the bundle fos user:    
 
