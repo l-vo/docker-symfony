@@ -5,8 +5,8 @@ services:
     container_name: mysql
     restart: always
     volumes:
-      - mysql:/var/lib/mysql
-      - mysql:/flags
+      - mysql-data:/var/lib/mysql
+      - mysql-flags:/flags
       - ./mysql/init.sql:/init.sql
     environment:
       - TZ=Europe/Paris
@@ -39,4 +39,5 @@ services:
       - ./apache/refresh-acl.sh:/refresh-acl.sh
       - ./apache/run.sh:/run.sh
 volumes:
-  mysql: ~
+  mysql-data: ~
+  mysql-flags: ~
