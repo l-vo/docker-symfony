@@ -82,22 +82,22 @@ Composer is installed too. For instance to install the bundle fos user:
 <a name="config-files"></a>
 ## Configuration files ##
 Apache configuration:
-* apache/apache2.conf (general configuration)
-* apache/000-default.conf (host configuration)
-* apache/Dockerfile (installation of libraries needed in the apache container)
-* apache/run.sh (execution of commands needed by the apache container, launched after volumes mount, each time the container is started) 
-* apache/refresh-acl.sh (if you need to add another user to the acl)
+* docker_apache/apache2.conf (general configuration)
+* docker_apache/000-default.conf (host configuration)
+* docker_apache/Dockerfile (installation of libraries needed in the apache container)
+* docker_apache/run.sh (execution of commands needed by the apache container, launched after volumes mount, each time the container is started) 
+* docker_apache/refresh-acl.sh (if you need to add another user to the acl)
 
 Php configuration:
-* apache/php.ini (general configuration)
-* apache/apache-20-xdebug.ini and apache/cli-20-xdebug.ini (xdebug configuration for apache and CLI)
+* docker_apache/php.ini (general configuration)
+* docker_apache/apache-20-xdebug.ini and apache/cli-20-xdebug.ini (xdebug configuration for apache and CLI)
 
 Mysql configuration:
-* mysql/init.sql (optional database and user creation, executed once when no mysql data exists)
+* docker_mysql/init.sql (optional database and user creation, executed once when no mysql data exists)
 By default, this script create a root user with 'root' as password.
 
 Afp configuration:
-* netatalk/afp.conf (afp server configuration)
+* docker_netatalk/afp.conf (afp server configuration)
 
 General configuration:
 * docker-compose.yml (containers orchestration)
