@@ -1,16 +1,12 @@
-apache/*
-mysql/*
-netatalk/*
+/docker_*/
 html-sources/*
 docker-compose*.yml
 
-!apache/install-sf.sh
-!apache/composer.phar
+!docker_apache/install-sf.sh
+!docker_apache/composer.phar
 
 # For keeping and get empty directories
-!mysql/.keep
-!netatalk/.keep 
-!html-sources/.keep
+!.keep
 
 # For OSX hosts
 .DS_Store

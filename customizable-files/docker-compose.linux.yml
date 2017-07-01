@@ -21,7 +21,7 @@ services:
     links:
       - mysql:db
   apache:
-    build: apache
+    build: docker_apache
     container_name: apache
     restart: always
     ports:
@@ -30,14 +30,14 @@ services:
       - mysql
     volumes:
       - ./html-sources:/app
-      - ./apache/apache2.conf:/etc/apache2/apache2.conf
-      - ./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
-      - ./apache/apache-php.ini:/etc/php5/apache2/php.ini
-      - ./apache/cli-php.ini:/etc/php5/cli/php.ini
-      - ./apache/apache-20-xdebug.ini:/etc/php5/apache2/conf.d/20-xdebug.ini
-      - ./apache/cli-20-xdebug.ini:/etc/php5/cli/conf.d/20-xdebug.ini
-      - ./apache/refresh-acl.sh:/refresh-acl.sh
-      - ./apache/run.sh:/run.sh
+      - ./docker_apache/apache2.conf:/etc/apache2/apache2.conf
+      - ./docker_apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./docker_apache/apache-php.ini:/etc/php5/apache2/php.ini
+      - ./docker_apache/cli-php.ini:/etc/php5/cli/php.ini
+      - ./docker_apache/apache-20-xdebug.ini:/etc/php5/apache2/conf.d/20-xdebug.ini
+      - ./docker_apache/cli-20-xdebug.ini:/etc/php5/cli/conf.d/20-xdebug.ini
+      - ./docker_apache/refresh-acl.sh:/refresh-acl.sh
+      - ./docker_apache/run.sh:/run.sh
 volumes:
   mysql-data: ~
   mysql-flags: ~

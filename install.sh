@@ -8,7 +8,7 @@ function copyFile()
 {
   file="$1"
   dir="$2"
-  
+
   if [ -z "$3" ]
   then
     dest="$file"
@@ -26,21 +26,21 @@ function copyFile()
 }
 
 # Apache files
-copyFile "000-default.conf" "apache"
-copyFile "apache2.conf" "apache"
-copyFile "apache-20-xdebug.ini" "apache"
-copyFile "cli-20-xdebug.ini" "apache"
-copyFile "apache-php.ini" "apache"
-copyFile "cli-php.ini" "apache"
-copyFile "run.sh" "apache"
-copyFile "refresh-acl.sh" "apache"
-copyFile "Dockerfile" "apache"
+copyFile "000-default.conf" "docker_apache"
+copyFile "apache2.conf" "docker_apache"
+copyFile "apache-20-xdebug.ini" "docker_apache"
+copyFile "cli-20-xdebug.ini" "docker_apache"
+copyFile "apache-php.ini" "docker_apache"
+copyFile "cli-php.ini" "docker_apache"
+copyFile "run.sh" "docker_apache"
+copyFile "refresh-acl.sh" "docker_apache"
+copyFile "Dockerfile" "docker_apache"
 
 # Mysql files
-copyFile "init.sql" "mysql"
+copyFile "init.sql" "docker_mysql"
 
 # Afp files
-copyFile "afp.conf" "netatalk"
+copyFile "afp.conf" "docker_netatalk"
 
 # Check if we are on an OSX host
 if [[ $(uname -s) == "Darwin" ]]
